@@ -1,0 +1,15 @@
+{
+  "name": "Custom Hosts - CoinMiner",
+  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+  "license": "GPLv3",
+  "sources": [
+    {
+      "name": "CoinMiner.txt rules",
+      "source": "https://hosts.anudeep.me/mirror/CoinMiner.txt",
+      "type": "hosts",
+      "transformations": ["RemoveModifiers", "Validate"]
+    }
+  ],
+  "transformations": ["Deduplicate", "Compress"]
+}

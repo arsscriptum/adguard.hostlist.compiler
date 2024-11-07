@@ -1,0 +1,15 @@
+{
+  "name": "Custom Hosts - The_Quantum_Youtube Ads-List",
+  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+  "license": "GPLv3",
+  "sources": [
+    {
+      "name": "The_Quantum_Youtube-Ads-List.txt rules",
+      "source": "https://gitlab.com/The_Quantum_Alpha/the-quantum-ad-list/-/raw/master/Individual lists/The_Quantum_Youtube-Ads-List.txt",
+      "type": "hosts",
+      "transformations": ["RemoveModifiers", "Validate"]
+    }
+  ],
+  "transformations": ["Deduplicate", "Compress"]
+}
