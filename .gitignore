@@ -10,3 +10,5 @@ examples/energized/filter.txt
 examples/energized/hosts
 examples/china/filter.txt
 examples/whitelist/filter.txt
+update-filters.sh
+scripts/update-filters.sh

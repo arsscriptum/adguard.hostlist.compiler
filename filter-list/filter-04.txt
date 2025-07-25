@@ -3,7 +3,7 @@
 ! Description: Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.
 ! Homepage: https://github.com/arsscriptum/adguard.hostlist.compiler
 ! License: GPLv3
-! Last modified: 2024-11-07T18:21:47.563Z
+! Last modified: 2025-07-25T15:37:30.100Z
 !
 ! Compiled by @adguard/hostlist-compiler v1.0.29
 !

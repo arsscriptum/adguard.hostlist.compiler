@@ -3,7 +3,7 @@
 ! Description: Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.
 ! Homepage: https://github.com/arsscriptum/adguard.hostlist.compiler
 ! License: GPLv3
-! Last modified: 2024-11-07T18:59:24.156Z
+! Last modified: 2025-07-25T16:17:15.026Z
 !
 ! Compiled by @adguard/hostlist-compiler v1.0.29
 !
@@ -203,12 +203,14 @@
 ||bigdata.advmob.cn^
 ||bindedge.com^
 ||bindfast.com^
+||biomagin.com^
 ||bkrtx.com^
 ||bleachbit.com^
 ||bluekai.com^
 ||bluestreak.com^
 ||brightroll.com^
 ||brucelead.com^
+||bullionglidingscuttle.com^
 ||c.go-mpulse.net^
 ||c.thecounter.de^
 ||c0.adalyser.com^
@@ -861,6 +863,7 @@
 ||statse.webtrendslive.com^
 ||stl.p.a1.traceworks.com^
 ||straighttangerine.cz.cc^
+||stratus.campaign-image.com.cn^
 ||sugoicounter.com^
 ||superstats.com^
 ||sync.bfmio.com^
@@ -992,6 +995,7 @@
 ||tracker.netklix.com^
 ||tracker.remp.impresa.pt^
 ||tracker1.leadiya.com^
+||tracking-lealcobrancaspremium.p-email.net^
 ||tracking.10e20.com^
 ||tracking.3com.com^
 ||tracking.adalyser.com^
@@ -1145,6 +1149,8 @@
 ||xtrasizeoriginal.com.br^
 ||xxxcounter.com^
 ||xyz.freelogs.com^
+||zc1.campaign-view.com.cn^
+||zc1.maillist-manage.com.cn^
 ||zz.cqcounter.com^
 
 # sites with known trojans, phishing, or other malware
@@ -1251,6 +1257,7 @@
 ||antispywareexpert.com^
 ||antivirus-scanner.com^
 ||antoinettepoisson.fr^
+||apconsultantgroup.com^
 ||apel3.fr^
 ||api.inwemo.com^
 ||app2.letslowbefast.life^
@@ -1332,6 +1339,7 @@
 ||bergeresdefrance.fr^
 ||besacon.fr^
 ||bestblackhatforum.fr^
+||bestoftoday.click^
 ||bestreview.site^
 ||bestwebpillplace.com^
 ||bestwesterne.fr^
@@ -1418,6 +1426,7 @@
 ||campinglespins.fr^
 ||camplace.fr^
 ||campus-forprof.fr^
+||canada.postcanadakxcif.top^
 ||canadapost-delivery-reshedule.com^
 ||canadapost-paymentservice.com^
 ||canadapost-postescanada.uwpackege.top^
@@ -1518,8 +1527,10 @@
 ||consumerspanel.frge.io^
 ||cookeatshare.fr^
 ||coordino.com^
+||cosi.iprive.net^
 ||cosmopolian.fr^
 ||cosmopolita.fr^
+||costco-rewardsaccount1.com^
 ||costorama.fr^
 ||countrystore.fr^
 ||coupondio.fr^
@@ -1551,6 +1562,7 @@
 ||dbios.org^
 ||dealerconnection.fr^
 ||dealiveroo.fr^
+||declarateenquiebra.cl^
 ||decompiler.fr^
 ||dejoyaux.fr^
 ||delamaisn.fr^
@@ -1636,6 +1648,8 @@
 ||euriosport.fr^
 ||europr1.fr^
 ||eurospoprt.fr^
+||eurostreaming.myproxy.help^
+||eurostreaming.superproxy.lol^
 ||eviebot.fr^
 ||ewea.fr^
 ||exasked.com^
@@ -1714,6 +1728,7 @@
 ||ftdownload.com^
 ||fu.golikeus.net^
 ||g2play.fr^
+||gabrielahlavack.samcart.com^
 ||gadgetsytecnologia.com^
 ||gagy.fr^
 ||gaiaherbs.fr^
@@ -1846,6 +1861,7 @@
 ||install.myvideotab.com^
 ||installmac.com^
 ||instantstreetview.fr^
+||intelcomasfcmscta.com^
 ||interac-etransfer.net^
 ||interac1-ssl2.info^
 ||interacpayment-cra.com^
@@ -2156,10 +2172,12 @@
 ||mv0129.stream^
 ||mvspjwd.com^
 ||mx1.freemail.ne.jp^
+||mybancoschiles.gets-it.net^
 ||mycaal.fr^
 ||mycnal.fr^
 ||mydreamday.fr^
 ||myedebred.fr^
+||myhst2024.com^
 ||mylike.co.uk^
 ||myornamenti.com^
 ||myprivateemails.com^
@@ -2270,6 +2288,7 @@
 ||paris-banlieue-meetinggame.fr^
 ||passportindex.fr^
 ||payments-details.com^
+||payplintelverify3.site^
 ||paysdepieces.fr^
 ||paytel.fr^
 ||pbworks.fr^
@@ -2366,6 +2385,7 @@
 ||purchasingpower.fr^
 ||purepods.fr^
 ||qbittorrent.com^
+||qdssy.balistrera.sbs^
 ||qevia.doubleclick.bond^
 ||qouv.fr^
 ||quaidesbulles.fr^
@@ -2376,6 +2396,7 @@
 ||qyh.co.ua^
 ||radio42.fr^
 ||randki-sex.com^
+||rapid-glade-cde8.asoumare042024.workers.dev^
 ||raptp.fr^
 ||rb-on1in-sec.com^
 ||rbc-anth-ogrn.com^
@@ -2405,12 +2426,14 @@
 ||resultatspmu.fr^
 ||retaildetail.fr^
 ||retrofuture.fr^
+||return2025costco.com^
 ||rev-cvnada-dep.com^
 ||rezeptwelt.fr^
 ||rgp-ign.fr^
 ||rickrolling.com^
 ||rifec.co^
 ||rimnow.fr^
+||riosaladohp.com^
 ||robertgraham.fr^
 ||rockrose.fr^
 ||rocks.io^
@@ -2578,6 +2601,7 @@
 ||thainationalparks.fr^
 ||thalasur.fr^
 ||thebestknifes.fr^
+||thebestone.click^
 ||thebestwebpillplace.com^
 ||thechive.fr^
 ||thedatesafe.com^
@@ -2591,6 +2615,7 @@
 ||thunderbird.es^
 ||tibs.fr^
 ||ticketforchange.fr^
+||ticketpayfee.com^
 ||ticketspy.fr^
 ||tiku.io^
 ||timberlande.fr^
@@ -2657,10 +2682,12 @@
 ||utenti.lycos.it^
 ||utrace.fr^
 ||van-city-sign-on.com^
+||vc-login.com^
 ||vcarrefour.fr^
 ||venturead.com^
 ||verify.rambler-profile.site^
 ||versbaudet.fr^
+||vi-improved.org^
 ||viad.fr^
 ||videoamp.com^
 ||videofitness.fr^
@@ -4530,6 +4557,7 @@
 ||ads20.focalink.com^
 ||ads21.focalink.com^
 ||ads22.focalink.com^
+||ads22.host-cdn.net^
 ||ads23.focalink.com^
 ||ads24.focalink.com^
 ||ads24.net^
@@ -5139,6 +5167,7 @@
 ||beaconin2.notinote.me^
 ||beap.gemini.yahoo.com^
 ||benimreklam.com^
+||bespokeshirtsmail.com^
 ||best2017games.com^
 ||best2019-games-web1.com^
 ||best2020-games-web1.com^
@@ -5244,6 +5273,7 @@
 ||bwp.lastfm.com.com^
 ||c.adexchangemachine.com^
 ||c.admob.com^
+||c.adsco.re^
 ||c.anytrx.com^
 ||c.ar.msn.com^
 ||c.at.msn.com^
@@ -6051,6 +6081,7 @@
 ||go.onclasrv.com^
 ||go.padsdelivery.com^
 ||go.padstm.com^
+||go.rightdailyfeed.com^
 ||go.spaceshipads.com^
 ||go.stirshakead.com^
 ||go.verymuchad.com^
@@ -6223,6 +6254,7 @@
 ||images.directtrack.com^
 ||images.linkwithin.com^
 ||images.mbuyu.nl^
+||images.mediago.io^
 ||images.netcomvad.com^
 ||images.outbrainimg.com^
 ||images.people2people.com^
@@ -6451,6 +6483,7 @@
 ||l.linkpulse.com^
 ||l.ohmyad.co^
 ||l.qq.com^
+||labas-hl.de^
 ||labashl.de^
 ||laborex.hu^
 ||ladyclicks.ru^
@@ -7011,6 +7044,7 @@
 ||orpheus.cuci.nl^
 ||osd-onead.cdn.hinet.net^
 ||osm-onead.cdn.hinet.net^
+||otakutee.com^
 ||otletdivak.hu^
 ||otpercpiheno.blogspot.com^
 ||otpercpiheno.hu^
@@ -7295,6 +7329,7 @@
 ||prpops.com^
 ||ps.eyeota.net^
 ||ps4ux.com^
+||psoabojaksou.net^
 ||pstatic.datafastguru.info^
 ||pt-gmtdmp.mookie1.com^
 ||pt.beststreams.club^
@@ -7510,6 +7545,7 @@
 ||s.arclk.net^
 ||s.baidu.com^
 ||s.boom.ro^
+||s.click.aliexpress.com^
 ||s.clickiocdn.com^
 ||s.clicktale.net^
 ||s.di.com.pl^
@@ -8033,11 +8069,13 @@
 ||tracking.internetstores.de^
 ||tracking.joker.com^
 ||tracking.keywordmax.com^
+||tracking.scientific-meets.com^
 ||tracking.truthfinder.com^
 ||tracking.vcommission.com^
 ||tracking.veoxa.com^
 ||trackvoluum.com^
 ||tradearabia.advertserve.com^
+||tradecore.tradehouse.media^
 ||tradelax.com^
 ||tradem.com^
 ||tradetracker.net^
@@ -8617,6 +8655,7 @@
 ||www.reklam3.net^
 ||www.reusenproject-n.nl^
 ||www.riskybus.f9.co.uk^
+||www.ritikhush.com^
 ||www.robm674.plus.com^
 ||www.roulettebotplus.com^
 ||www.rpepin.plus.com^
@@ -8817,6 +8856,7 @@
 ||youfck.com^
 ||your-gift-zone.com^
 ||your.dailytopdealz.com^
+||youradexchange.com^
 ||yourgascards.com^
 ||yourgiftrewards.com^
 ||yourgiftzone.com^
