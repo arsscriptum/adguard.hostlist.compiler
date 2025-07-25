@@ -1,7 +1,5 @@
 # Hostlist compiler
 
-[![NPM](https://nodei.co/npm/@adguard/hostlist-compiler.png?compact=true)](https://www.npmjs.com/package/@adguard/hostlist-compiler/)
-
 This is a simple tool that makes it easier to compile a [hosts blocklist](https://adguard-dns.io/kb/general/dns-filtering-syntax/) compatible with AdGuard Home or any other AdGuard product with **DNS filtering**.
 
 - [Usage](#usage)
@@ -38,6 +36,87 @@ Convert and compress a `/etc/hosts`-syntax blocklist to [AdGuard syntax](https:/
 ```
 hostlist-compiler -i hosts.txt -i hosts2.txt -o output.txt
 ```
+
+# Scripts
+
+## 🧪 `check-modified-filters.sh` – Detect Modified Configurations
+
+This script checks whether any filter configuration files in a specific directory have been modified (e.g., via Git), and optionally lists how many lines were changed per file.
+
+### 🔍 What It Does
+
+* Runs `git diff` against each config file (typically in `filter-configs/`)
+* Determines which filters have been updated
+* Summarizes the number of lines changed per file
+* Outputs the list of changed filter configs so they can be recompiled
+
+### ✅ Use Case
+
+Use this script in your CI/CD pipeline or manual process to identify which filters need regeneration after edits.
+
+### Example Usage
+
+```bash
+./scripts/check-modified-filters.sh
+```
+
+### Sample Output
+
+```
+check-filters.sh - generate filters
+
+checkin filters...
+
+Modified filters:
+  filter-configs/config-01.json (12 lines changed)
+  filter-configs/config-05.json (3 lines changed)
+
+Filters needing regeneration:
+  config-01
+  config-05
+```
+
+---
+
+## 🛠 `generate-filters.sh` – Compile and Save Filters
+
+This script takes care of compiling one or more filters by invoking the compiler with the appropriate configuration and saving the output files (split or not) to the target directory.
+
+### 🔍 What It Does
+
+* Iterates over `.json` files in `filter-configs/`
+* Runs the compiler using `cli.js`
+* Outputs result(s) to `filter-list/`
+* Handles file splitting if `maxsize` is defined in the config
+* Automatically names output files:
+  e.g., `filter-01.txt`, or `filter-01_part1.txt`, etc.
+
+### ✅ Use Case
+
+Run this to regenerate all filters before committing updates or deploying them.
+
+### Example Usage
+
+```bash
+./scripts/generate-filters.sh
+```
+
+### Sample Output
+
+```
+generate-filters.sh - compile all filters
+
+Generating config-01...
+✓ filter-list/filter-01.txt (138063 bytes)
+
+Generating config-03...
+✓ filter-list/filter-03_part1.txt
+✓ filter-list/filter-03_part2.txt
+
+All filters successfully generated.
+```
+
+
 
 **Build a configurable blocklist from multiple sources**
 
@@ -88,6 +167,7 @@ Here is an example of this configuration:
       "name": "Local rules",
       "source": "rules.txt",
       "type": "adblock",
+      "maxsize": "0",
       "transformations": ["RemoveComments", "Compress"],
       "exclusions": ["excluded rule 1"],
       "exclusions_sources": ["exclusions.txt"],
@@ -114,6 +194,7 @@ Here is an example of this configuration:
 - `homepage` - (optional) URL to the list homepage.
 - `license` - (optional) Filter list license.
 - `version` - (optional) Filter list version.
+- `maxsize` - (optional) Max Size of output file
 - `sources` - (mandatory) array of the list sources.
   - `.source` - (mandatory) path or URL of the source. It can be a traditional filter list or a hosts file.
   - `.name` - (optional) name of the source.
@@ -141,6 +222,68 @@ Here is an example of a minimal configuration:
   ]
 }
 ```
+
+
+## ✂️ Output Splitting with `maxsize`
+
+You can now limit the size of the compiled output using the `maxsize` field in your configuration file.
+
+### 🔧 `maxsize` (optional)
+
+* Specifies the **maximum size in bytes** for any output file.
+* If the compiled list exceeds `maxsize`, it will be **split into multiple files**.
+* Each part will be saved with the format:
+  `filter-01_part1.txt`, `filter-01_part2.txt`, etc.
+* If the final output is **smaller than** `maxsize`, it will be written **as-is** to the path provided via `--output`.
+
+### Example
+
+```json
+{
+  "name": "Custom Hosts - adaway",
+  "description": "DNS-level compatible adblock filter",
+  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+  "license": "GPLv3",
+  "maxsize": "614400",
+  "sources": [
+    {
+      "name": "hosts.txt rules",
+      "source": "https://adaway.org/hosts.txt",
+      "type": "hosts",
+      "transformations": ["RemoveModifiers", "Validate"]
+    }
+  ],
+  "transformations": ["Deduplicate", "Compress"]
+}
+```
+
+### Command
+
+```bash
+node ./src/cli.js -c ./config.json -o ./filter-list/filter-01.txt
+```
+
+### Output
+
+If the file size exceeds `614400` bytes:
+
+```
+./filter-list/filter-01_part1.txt
+./filter-list/filter-01_part2.txt
+```
+
+If it does **not exceed**:
+
+```
+./filter-list/filter-01.txt
+```
+
+Each file part includes a header with:
+
+* File name
+* Actual size
+* Max allowed size
+
 
 **Exclusion and inclusion rules**
 
