@@ -10,7 +10,7 @@
 
 LogCategory=GenerateFilters
 # node src/cli.js or hostlist-compiler
-COMPILER_CLIENT=/home/gp/dev/hosts-compiler/node_modules/.bin/hostlist-compiler
+
 ExpectedVersion="1.0.29"
 
 # Source the logging functions
@@ -27,6 +27,9 @@ log_il "\ngenerate-filters.sh - generate filters\nRunning client $COMPILER_CLIEN
 pushd "$(dirname "$0")/.." > /dev/null
 RootPath=`pwd`
 popd > /dev/null
+
+COMPILER_CLIENT=$RootPath/src/cli.js
+NODEBIN=$(which node)
 
 # ...
 
@@ -48,9 +51,9 @@ for i in $(seq -w 1 10); do
     log_info "   Compiling output to      --> $FilterOutput"
     # Record the start time
     start_time=$(date +%s)
-    
+    log_info "$NODEBIN $COMPILER_CLIENT -c \"$ConfigFile\" -o \"$FilterOutput\""
     # Execute the command
-    $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput"
+    $NODEBIN $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput"
     
     if [ $? -eq 0 ]; then
         log_ok "generated successfully: $FilterOutput"
@@ -65,7 +68,7 @@ for i in $(seq -w 1 10); do
     # Calculate and print the elapsed time
     elapsed_time=$((end_time - start_time))
     log_info "Iteration $i completed in $elapsed_time seconds"
-    exit 0
+
 done
 
 popd > /dev/null
