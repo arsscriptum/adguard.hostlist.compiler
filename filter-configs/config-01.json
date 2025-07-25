@@ -1,16 +1,24 @@
 {
-  "name": "Custom Hosts - adaway",
-  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
-  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
-  "license": "GPLv3",
-  "maxsize": "16777216",
-  "sources": [
-    {
-      "name": "hosts.txt rules",
-      "source": "https://adaway.org/hosts.txt",
-      "type": "hosts",
-      "transformations": ["RemoveModifiers", "Validate"]
-    }
-  ],
-  "transformations": ["Deduplicate", "Compress"]
+    "name": "Custom Hosts - adaway",
+    "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+    "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+    "license": "GPLv3",
+    "maxsize": "16777216",
+    "sources": [
+        {
+            "name": "hosts.txt rules",
+            "source": "https://adaway.org/hosts.txt",
+            "type": "hosts",
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "8c925c37a5eaa5e1c582c76e12301797861addee5ad0fa0e6e46c9dd0136fe55"
+        }
+    ],
+    "transformations": [
+        "Deduplicate",
+        "Compress"
+    ],
+    "_configPath": "/home/gp/dev/adguard.hostlist.compiler/filter-configs/config-01.json"
 }

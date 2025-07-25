@@ -65,12 +65,11 @@ consola.info(`Starting ${packageJson.name} v${packageJson.version}`);
  */
 async function readConfig() {
     consola.debug(`Reading configuration from ${argv.config}`);
-
-    // Check if the configuration file exists.
     await fs.access(argv.config);
     const configStr = (await fs.readFile(argv.config)).toString();
-
-    return JSON.parse(configStr);
+    const config = JSON.parse(configStr);
+    config._configPath = argv.config; // ⬅ used to update checksum later
+    return config;
 }
 
 /**

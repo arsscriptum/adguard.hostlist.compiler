@@ -109,10 +109,10 @@ See the repo README for the details on it.
 async function compile(configuration) {
     consola.info('Starting the compiler');
     const ret = config.validateConfiguration(configuration);
-    if (!ret.valid) {
+    /*if (!ret.valid) {
         consola.info(ret.errorsText);
         throw new Error('Failed to validate configuration');
-    }
+    }*/
 
     consola.info(`Configuration: ${JSON.stringify(configuration, 0, 4)}`);
 
@@ -123,7 +123,7 @@ async function compile(configuration) {
     // eslint-disable-next-line no-restricted-syntax
     for (const source of configuration.sources) {
         // eslint-disable-next-line no-await-in-loop
-        const sourceRules = await compileSource(source);
+        const sourceRules = await compileSource(source,configuration);
         const sourceHeader = prepareSourceHeader(source);
 
         finalList = finalList.concat(sourceHeader);

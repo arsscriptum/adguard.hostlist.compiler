@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const fs = require('fs').promises;
 const axios = require('axios');
+const crypto = require('crypto');
 
 function isURL(str) {
     try {
@@ -11,6 +12,11 @@ function isURL(str) {
         return false;
     }
 }
+
+function computeChecksum(str) {
+    return crypto.createHash('sha256').update(str, 'utf8').digest('hex');
+}
+
 
 /**
  * Downloads (or reads from the disk) the specified source
@@ -170,6 +176,7 @@ class Wildcard {
 
 module.exports = {
     download,
+    computeChecksum,
     Wildcard,
     splitByDelimiterWithEscapeCharacter,
     substringBetween,

@@ -1,33 +1,46 @@
 const consola = require('consola');
+const fs = require('fs').promises;
 const utils = require('./utils');
 const { transform } = require('./transformations/transform');
 
 /**
- * A source configuration. See a better description in README.md
- * @typedef {Object} ListSource
- * @property {String} source - (mandatory) path or URL of the source.
- * @property {String} name - name of the source.
- * @property {String} type - type of the source (adblock or hosts).
- * @property {Array<String>} transformations - a list of transformations to apply.
- * @property {Array<String>} exclusions - a list of the rules (or wildcards) to exclude.
- * @property {Array<String>} exclusions_sources - a list of files with exclusions.
- */
-
-/**
- * Compiles an individual source according to it's configuration.
+ * Compiles an individual source if the checksum has changed.
  *
- * @param {ListSource} source - source configuration.
- * @returns {Promise<Array<string>>} array with the source rules
+ * @param {Object} source - source configuration.
+ * @param {Object} config - full config (to persist checksum updates)
+ * @returns {Promise<Array<string>>}
  */
-async function compileSource(source) {
-    consola.info(`Start compiling ${source.source}`);
+async function compileSource(source, config) {
+    consola.info(`Checking source: ${source.source}`);
+
     const str = await utils.download(source.source);
+    const checksum = utils.computeChecksum(str);
+
+    if (source.checksum && source.checksum.toLowerCase() === checksum.toLowerCase()) {
+        consola.info(`Skipping ${source.source} (checksum unchanged)`);
+        return []; // No processing
+    }
+
+    // Update checksum
+    source.checksum = checksum;
+
+    // Save updated config if path is tracked
+    if (config._configPath) {
+        try {
+            await fs.writeFile(config._configPath, JSON.stringify(config, null, 4));
+            consola.success(`Updated checksum in config file: ${config._configPath}`);
+        } catch (err) {
+            consola.warn(`Could not update config file: ${err.message}`);
+        }
+    }
+
+    // Process the file
     let rules = str.split(/\r?\n/);
-    consola.info(`Original length is ${rules.length}`);
+    consola.info(`Original rule count: ${rules.length}`);
 
     rules = await transform(rules, source, source.transformations);
 
-    consola.info(`Length after applying transformations is ${rules.length}`);
+    consola.info(`Rule count after transformations: ${rules.length}`);
     return rules;
 }
 
