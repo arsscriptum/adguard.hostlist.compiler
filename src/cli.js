@@ -120,7 +120,15 @@ async function main() {
         const lines = await compile(config);
 
         consola.info(`Writing output to ${argv.output}`);
-        await fs.writeFile(argv.output, lines.join('\n'));
+        if (Array.isArray(lines) && lines[0]?.content) {
+        for (const part of lines) {
+            const outputPath = part.name.startsWith('filter') ? part.name : argv.output.replace(/(\.\w+)$/, `_${part.name}$1`);
+            consola.info(`Writing part to ${outputPath}`);
+            await fs.writeFile(outputPath, part.content);
+        }
+        } else {
+            await fs.writeFile(argv.output, lines.join('\n'));
+        }
         consola.info('Finished compiling');
     } catch (ex) {
         consola.error(ex);

@@ -22,6 +22,11 @@
       "description": "Filter list license",
       "type": "string"
     },
+    "maxsize": {
+      "type": "string",
+      "pattern": "^[0-9]+$",
+      "description": "Optional maximum size in bytes for the compiled filter output"
+    },
     "version": {
       "description": "Filter version",
       "type": "string"

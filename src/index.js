@@ -4,6 +4,42 @@ const config = require('./configuration');
 const compileSource = require('./compile-source');
 const { transform } = require('./transformations/transform');
 const packageJson = require('../package.json');
+const path = require('path');
+const os = require('os');
+
+function splitOutputLines(lines, maxSizeBytes, baseName) {
+    const result = [];
+    let currentPart = [];
+    let currentSize = 0;
+    let partIndex = 1;
+
+    const encoded = (s) => Buffer.byteLength(s + os.EOL);
+
+    for (const line of lines) {
+        const lineSize = encoded(line);
+        if (currentSize + lineSize > maxSizeBytes && currentPart.length > 0) {
+            result.push({
+                name: `${baseName}_part${partIndex}.txt`,
+                lines: currentPart,
+            });
+            partIndex++;
+            currentPart = [];
+            currentSize = 0;
+        }
+        currentPart.push(line);
+        currentSize += lineSize;
+    }
+
+    if (currentPart.length > 0) {
+        result.push({
+            name: `${baseName}_part${partIndex}.txt`,
+            lines: currentPart,
+        });
+    }
+
+    return result;
+}
+
 
 /**
  * Prepares list header
@@ -102,7 +138,32 @@ async function compile(configuration) {
     // Now prepend the list header and we're good to go
     const header = prepareHeader(configuration);
     consola.info(`Final length of the list is ${header.length + finalList.length}`);
-    return header.concat(finalList);
+    const outputLines = header.concat(finalList);
+    const maxsize = parseInt(configuration.maxsize || '0', 10);
+
+    // No limit if undefined, 0, or < 1024
+    if (!maxsize || maxsize < 1024) {
+        return outputLines;
+    }
+
+    // Split and include file size info in header
+    const allParts = splitOutputLines(outputLines, maxsize, configuration.outputBaseName || 'filter');
+
+    return allParts.map((part) => {
+        const size = Buffer.byteLength(part.lines.join(os.EOL));
+        const customHeader = [
+            '!',
+            `! File: ${part.name}`,
+            `! Actual size: ${size} bytes`,
+            `! Max size allowed: ${maxsize} bytes`,
+            '!',
+        ];
+        return {
+            name: part.name,
+            content: customHeader.concat(part.lines).join(os.EOL),
+        };
+    });
+
 }
 
 module.exports = compile;
