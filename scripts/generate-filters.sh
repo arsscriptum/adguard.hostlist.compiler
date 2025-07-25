@@ -44,14 +44,25 @@ fi
 
 pushd $RootPath > /dev/null
 
+NewMaxSize=16777216
+
 for i in $(seq -w 1 10); do
     ConfigFile="$RootPath/filter-configs/config-$i.json"
-    FilterOutput="$RootPath/filter-list/filter-$i.txt"
+    FilterOutput="$RootPath/filter-list-parts/filter-$i.txt"
     log_info "   Compiling using log file --> $ConfigFile"
     log_info "   Compiling output to      --> $FilterOutput"
     # Record the start time
     start_time=$(date +%s)
-    log_info "$NODEBIN $COMPILER_CLIENT -c \"$ConfigFile\" -o \"$FilterOutput\""
+    #log_info "$NODEBIN $COMPILER_CLIENT -c \"$ConfigFile\" -o \"$FilterOutput\""
+
+    CurrentMaxSize=$(jq '.maxsize | tonumber' $ConfigFile)
+
+    log_info "Setting new max size to $NewMaxSize, was $CurrentMaxSize"
+    sed -i "s/\"maxsize\": *\"[0-9]\+\"/\"maxsize\": \"$NewMaxSize\"/" "$ConfigFile"
+
+    NewMaxSizeValueDetected=$(jq '.maxsize | tonumber' $ConfigFile)
+    log_info "New Max Size Value Detected $NewMaxSizeValueDetected"
+
     # Execute the command
     $NODEBIN $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput"
     
