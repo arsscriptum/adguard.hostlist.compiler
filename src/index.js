@@ -153,7 +153,7 @@ async function compile(configuration) {
    }
 
    // Needs splitting
-   const baseName = configuration.outputBaseName || 'filter';
+   const baseName = configuration.outputBaseName;
    const allParts = splitOutputLines(outputLines, maxsize, baseName);
 
    return allParts.map((part) => {

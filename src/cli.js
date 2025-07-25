@@ -107,6 +107,8 @@ function createConfig() {
     return config;
 }
 
+const path = require('path');
+
 async function main() {
     try {
         if (!argv.input && !argv.config) {
@@ -115,19 +117,28 @@ async function main() {
 
         const config = argv.input ? createConfig() : await readConfig();
 
+        // Derive base name from output file path
+        const fullOutputPath = argv.output;
+        const parsedPath = path.parse(fullOutputPath);
+        const baseName = parsedPath.name; // e.g., "filter-01"
+        const ext = parsedPath.ext;       // e.g., ".txt"
+        const dir = parsedPath.dir;       // full path to directory
+
         consola.debug(`Configuration: ${JSON.stringify(config, 0, 4)}`);
 
         const lines = await compile(config);
 
         consola.info(`Writing output to ${argv.output}`);
         if (Array.isArray(lines) && lines[0]?.content) {
-        for (const part of lines) {
-            const outputPath = part.name.startsWith('filter') ? part.name : argv.output.replace(/(\.\w+)$/, `_${part.name}$1`);
-            consola.info(`Writing part to ${outputPath}`);
-            await fs.writeFile(outputPath, part.content);
-        }
+            for (const part of lines) {
+                // Use original base name + _partX + extension
+                const partNumber = part.name.match(/_part(\d+)\.txt$/)?.[1] || '1';
+                const outputPath = path.join(dir, `${baseName}_part${partNumber}${ext}`);
+                consola.info(`Writing part to ${outputPath}`);
+                await fs.writeFile(outputPath, part.content);
+            }
         } else {
-            await fs.writeFile(argv.output, lines.join('\n'));
+            await fs.writeFile(fullOutputPath, lines.join('\n'));
         }
         consola.info('Finished compiling');
     } catch (ex) {

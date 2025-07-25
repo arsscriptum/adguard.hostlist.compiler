@@ -68,7 +68,6 @@ for i in $(seq -w 1 10); do
     # Calculate and print the elapsed time
     elapsed_time=$((end_time - start_time))
     log_info "Iteration $i completed in $elapsed_time seconds"
-
 done
 
 popd > /dev/null
