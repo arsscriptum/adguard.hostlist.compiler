@@ -146,24 +146,30 @@ async function compile(configuration) {
         return outputLines;
     }
 
-    // Split and include file size info in header
-    const allParts = splitOutputLines(outputLines, maxsize, configuration.outputBaseName || 'filter');
+   const totalSize = Buffer.byteLength(outputLines.join(os.EOL));
 
-    return allParts.map((part) => {
-        const size = Buffer.byteLength(part.lines.join(os.EOL));
-        const customHeader = [
-            '!',
-            `! File: ${part.name}`,
-            `! Actual size: ${size} bytes`,
-            `! Max size allowed: ${maxsize} bytes`,
-            '!',
-        ];
-        return {
-            name: part.name,
-            content: customHeader.concat(part.lines).join(os.EOL),
-        };
-    });
+   if (totalSize <= maxsize) {
+       return outputLines;
+   }
 
+   // Needs splitting
+   const baseName = configuration.outputBaseName || 'filter';
+   const allParts = splitOutputLines(outputLines, maxsize, baseName);
+
+   return allParts.map((part) => {
+       const size = Buffer.byteLength(part.lines.join(os.EOL));
+       const customHeader = [
+           '!',
+           `! File: ${part.name}`,
+           `! Actual size: ${size} bytes`,
+           `! Max size allowed: ${maxsize} bytes`,
+           '!',
+       ];
+       return {
+           name: part.name,
+           content: customHeader.concat(part.lines).join(os.EOL),
+       };
+   });
 }
 
 module.exports = compile;
