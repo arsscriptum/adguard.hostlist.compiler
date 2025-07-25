@@ -9,7 +9,10 @@
 # └────────────────────────────────────────────────────────────────────────────────┘
 
 LogCategory=GenerateFilters
- 
+# node src/cli.js or hostlist-compiler
+COMPILER_CLIENT=/home/gp/dev/hosts-compiler/node_modules/.bin/hostlist-compiler
+ExpectedVersion="1.0.29"
+
 # Source the logging functions
 
 if [ ! -d "$LOGGING" ]; then
@@ -18,28 +21,36 @@ else
     source $LOGGING
 fi
 
-log_il "\ngenerate-filters.sh - generate filters\n"
+log_il "\ngenerate-filters.sh - generate filters\nRunning client $COMPILER_CLIENT"
 
 # Navigate to the parent directory (root directory where docker-compose.yml is located)
 pushd "$(dirname "$0")/.." > /dev/null
 RootPath=`pwd`
-popd
+popd > /dev/null
 
 # ...
-log_warning "generate filters..."
 
+CurrentVersion=$($COMPILER_CLIENT --version)
+if [ "$CurrentVersion" == "$ExpectedVersion" ]; then
+    log_ok "current version: $CurrentVersion.. OK"
+
+else
+    log_error "Error, expected version: $ExpectedVersion and Current Version $CurrentVersion"
+    exit 1
+fi
 
 pushd $RootPath > /dev/null
 
 for i in $(seq -w 1 10); do
     ConfigFile="$RootPath/filter-configs/config-$i.json"
     FilterOutput="$RootPath/filter-list/filter-$i.txt"
-    
+    log_info "   Compiling using log file --> $ConfigFile"
+    log_info "   Compiling output to      --> $FilterOutput"
     # Record the start time
     start_time=$(date +%s)
     
     # Execute the command
-    node src/cli.js -c "$ConfigFile" -o "$FilterOutput"
+    $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput"
     
     if [ $? -eq 0 ]; then
         log_ok "generated successfully: $FilterOutput"
@@ -54,12 +65,9 @@ for i in $(seq -w 1 10); do
     # Calculate and print the elapsed time
     elapsed_time=$((end_time - start_time))
     log_info "Iteration $i completed in $elapsed_time seconds"
+    exit 0
 done
 
-popd
-
-
-
-
+popd > /dev/null
 
 log_ok "completed successfully!"
