@@ -6,61 +6,77 @@ This is a simple tool that makes it easier to compile a [hosts blocklist](https:
   - [Configuration](#configuration)
   - [Command-line](#command-line)
   - [API](#api)
-- [Transformations](#transformations)
-  - [RemoveComments](#remove-comments)
-  - [Compress](#compress)
-  - [RemoveModifiers](#remove-modifiers)
-  - [Validate](#validate)
-  - [ValidateAllowIp](#validate-allow-ip)
-  - [Deduplicate](#deduplicate)
-  - [InvertAllow](#invertallow)
-  - [RemoveEmptyLines](#removeemptylines)
-  - [TrimLines](#trimlines)
-  - [InsertFinalNewLine](#insertfinalnewline)
+- [Transformations](transformations.md)
 - [How to build](#how-to-build)
 
 ## <a name="usage"></a> Usage
 
-First of all, install the `hostlist-compiler`:
-
-```bash
-npm i -g @adguard/hostlist-compiler
-```
-
+First of all, install the [dependencies, and build](#how-to-build).
 After that you have two options.
 
-**Quick hosts conversion**
+**Using Scripts**
 
-Convert and compress a `/etc/hosts`-syntax blocklist to [AdGuard syntax](https://adguard-dns.io/kb/general/dns-filtering-syntax/).
+### `generate-filters.sh` – Compile and Save Filters
+
+This script takes care of compiling one or more filters by invoking the compiler with the appropriate configuration and saving the output files (split or not) to the target directory.
+
+#### What It Does
+
+* Iterates over `.json` files in `filter-configs/`
+* Runs the compiler using `cli.js`
+* Outputs result(s) to `filter-list/`
+* Handles file splitting if `maxsize` is defined in the config
+* Automatically names output files:
+  e.g., `filter-01.txt`, or `filter-01_part1.txt`, etc.
+
+#### Use Case
+
+Run this to regenerate all filters before committing updates or deploying them.
+
+#### Example Usage
+
+```bash
+./scripts/generate-filters.sh
+```
+
+#### Sample Output
 
 ```
-hostlist-compiler -i hosts.txt -i hosts2.txt -o output.txt
+generate-filters.sh - compile all filters
+
+Generating config-01...
+✓ filter-list/filter-01.txt (138063 bytes)
+
+Generating config-03...
+✓ filter-list/filter-03_part1.txt
+✓ filter-list/filter-03_part2.txt
+
+All filters successfully generated.
 ```
+---
 
-# Scripts
-
-## 🧪 `check-modified-filters.sh` – Detect Modified Configurations
+### `check-modified-filters.sh` – Detect Modified Configurations
 
 This script checks whether any filter configuration files in a specific directory have been modified (e.g., via Git), and optionally lists how many lines were changed per file.
 
-### 🔍 What It Does
+#### What It Does
 
 * Runs `git diff` against each config file (typically in `filter-configs/`)
 * Determines which filters have been updated
 * Summarizes the number of lines changed per file
 * Outputs the list of changed filter configs so they can be recompiled
 
-### ✅ Use Case
+#### Use Case
 
 Use this script in your CI/CD pipeline or manual process to identify which filters need regeneration after edits.
 
-### Example Usage
+#### Example Usage
 
 ```bash
 ./scripts/check-modified-filters.sh
 ```
 
-### Sample Output
+#### Sample Output
 
 ```
 check-filters.sh - generate filters
@@ -76,47 +92,14 @@ Filters needing regeneration:
   config-05
 ```
 
----
 
-## 🛠 `generate-filters.sh` – Compile and Save Filters
+**Quick hosts conversion**
 
-This script takes care of compiling one or more filters by invoking the compiler with the appropriate configuration and saving the output files (split or not) to the target directory.
-
-### 🔍 What It Does
-
-* Iterates over `.json` files in `filter-configs/`
-* Runs the compiler using `cli.js`
-* Outputs result(s) to `filter-list/`
-* Handles file splitting if `maxsize` is defined in the config
-* Automatically names output files:
-  e.g., `filter-01.txt`, or `filter-01_part1.txt`, etc.
-
-### ✅ Use Case
-
-Run this to regenerate all filters before committing updates or deploying them.
-
-### Example Usage
-
-```bash
-./scripts/generate-filters.sh
-```
-
-### Sample Output
+Convert and compress a `/etc/hosts`-syntax blocklist to [AdGuard syntax](https://adguard-dns.io/kb/general/dns-filtering-syntax/).
 
 ```
-generate-filters.sh - compile all filters
-
-Generating config-01...
-✓ filter-list/filter-01.txt (138063 bytes)
-
-Generating config-03...
-✓ filter-list/filter-03_part1.txt
-✓ filter-list/filter-03_part2.txt
-
-All filters successfully generated.
+hostlist-compiler -i hosts.txt -i hosts2.txt -o output.txt
 ```
-
-
 
 **Build a configurable blocklist from multiple sources**
 
@@ -194,7 +177,7 @@ Here is an example of this configuration:
 - `homepage` - (optional) URL to the list homepage.
 - `license` - (optional) Filter list license.
 - `version` - (optional) Filter list version.
-- `maxsize` - (optional) Max Size of output file
+- `maxsize` - **(optional) Max Size of output file**    ***<-- Added in this repo***
 - `sources` - (mandatory) array of the list sources.
   - `.source` - (mandatory) path or URL of the source. It can be a traditional filter list or a hosts file.
   - `.name` - (optional) name of the source.
@@ -223,8 +206,9 @@ Here is an example of a minimal configuration:
 }
 ```
 
+### Output Splitting with `maxsize`
 
-## ✂️ Output Splitting with `maxsize`
+Because havind HUGE filter files are causing AdGuard to lag, I have made it so that huge conversion are splitted in X number of files.
 
 You can now limit the size of the compiled output using the `maxsize` field in your configuration file.
 
@@ -394,206 +378,20 @@ import { writeFileSync } from 'fs';
 })();
 ```
 
-## <a name="transformations"></a> Transformations
-
-Here is the full list of transformations that are available:
-
-1. `RemoveComments`
-1. `Compress`
-1. `RemoveModifiers`
-1. `Validate`
-1. `ValidateAllowIp`
-1. `Deduplicate`
-1. `InvertAllow`
-1. `RemoveEmptyLines`
-1. `TrimLines`
-1. `InsertFinalNewLine`
-
-Please note that these transformations are are always applied in the order specified here.
-
-### <a name="remove-comments"></a> RemoveComments
-
-This is a very simple transformation that simply removes comments (e.g. all rules starting with `!` or `#`).
-
-### <a name="compress"></a> Compress
-
-> [!IMPORTANT]
-> This transformation converts `hosts` lists into `adblock` lists.
-
-Here's what it does:
-
-1. It converts all rules to adblock-style rules. For instance, `0.0.0.0 example.org` will be converted to `||example.org^`.
-2. It discards the rules that are now redundant because of other existing rules. For instance, `||example.org` blocks `example.org` and all it's subdomains, therefore additional rules for the subdomains are now redundant.
-
-### <a name="remove-modifiers"></a> RemoveModifiers
-
-By default, [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) will ignore rules with unsupported modifiers, and all of the modifiers listed here are unsupported. However, the rules with these modifiers are likely to be okay for DNS-level blocking, that's why you might want to remove them when importing rules from a traditional filter list.
-
-Here is the list of modifiers that will be removed:
-
-- `$third-party` and `$3p` modifiers
-- `$document` and `$doc` modifiers
-- `$all` modifier
-- `$popup` modifier
-- `$network` modifier
-
-> [!CAUTION]
-> Blindly removing `$third-party` from traditional ad blocking rules leads to lots of false-positives.
->> This is exactly why there is an option to exclude rules - you may need to use it.
-
-### <a name="validate"></a> Validate
-
-This transformation is really crucial if you're using a filter list for a traditional ad blocker as a source.
-
-It removes dangerous or incompatible rules from the list.
-
-So here's what it does:
-
-- Discards domain-specific rules (e.g. `||example.org^$domain=example.com`). You don't want to have domain-specific rules working globally.
-- Discards rules with unsupported modifiers. [Click here](https://github.com/AdguardTeam/AdGuardHome/wiki/Hosts-Blocklists#-adblock-style-syntax) to learn more about which modifiers are supported.
-- Discards rules that are too short.
-- Discards IP addresses. If you need to keep IP addresses, use [ValidateAllowIp](#validate-allow-ip) instead.
-
-If there are comments preceding the invalid rule, they will be removed as well.
-
-### <a name="validate-allow-ip"></a> ValidateAllowIp
-
-This transformation exactly repeats the behavior of [Validate](#validate), but leaves the IP addresses in the lists.
-
-### <a name="deduplicate"></a> Deduplicate
-
-This transformation simply removes the duplicates from the specified source.
-
-There are two important notes about this transformation:
-
-1. It keeps the original rules order.
-2. It ignores comments. However, if the comments precede the rule that is being removed, the comments will be also removed.
-
-For instance:
-
-```
-! rule1 comment 1
-rule1
-! rule1 comment 2
-rule1
-```
-
-Here's what will be left after the transformation:
-
-```
-! rule1 comment 2
-rule1
-```
-
-### <a name="invertallow"></a> InvertAllow
-
-This transformation converts blocking rules to "allow" rules. Note, that it does nothing to /etc/hosts rules (unless they were previously converted to adblock-style syntax by a different transformation, for example [Compress](#compress)).
-
-There are two important notes about this transformation:
-
-1. It keeps the original rules order.
-2. It ignores comments, empty lines, /etc/hosts rules and existing "allow" rules.
-
-**Example:**
-
-Original list:
-
-```
-! comment 1
-rule1
-
-# comment 2
-192.168.11.11   test.local
-@@rule2
-```
-
-Here's what we will have after applying this transformation:
-
-```
-! comment 1
-@@rule1
-
-# comment 2
-192.168.11.11   test.local
-@@rule2
-```
-
-### <a name="removeemptylines"></a> RemoveEmptyLines
-
-This is a very simple transformation that removes empty lines.
-
-**Example:**
-
-Original list:
-
-```
-rule1
-
-rule2
-
-
-rule3
-```
-
-Here's what we will have after applying this transformation:
-
-```
-rule1
-rule2
-rule3
-```
-
-### <a name="trimlines"></a> TrimLines
-
-This is a very simple transformation that removes leading and trailing spaces/tabs.
-
-**Example:**
-
-Original list:
-
-```
-rule1
-   rule2
-rule3
-		rule4
-```
-
-Here's what we will have after applying this transformation:
-
-```
-rule1
-rule2
-rule3
-rule4
-```
-
-### <a name="insertfinalnewline"></a> InsertFinalNewLine
-
-This is a very simple transformation that inserts a final newline.
-
-**Example:**
-
-Original list:
-
-```
-rule1
-rule2
-rule3
-```
-
-Here's what we will have after applying this transformation:
-
-```
-rule1
-rule2
-rule3
-
-```
-
-`RemoveEmptyLines` doesn't delete this empty row due to the execution order.
-
 ## <a name="how-to-build"></a> How to build
 
+You can clean everything and do a fresh install:
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npm install ajv-formats@1.5.1 --legacy-peer-deps
+npm install ajv@6.12.0
+```
+
+![deps](img/deps.png)
+
+Build:
 - `yarn install` - installs dependencies
 - `yarn lint` - runs eslint
 - `yarn test` - runs tests
