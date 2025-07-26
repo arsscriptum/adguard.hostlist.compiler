@@ -1,10 +1,16 @@
 const fs = require('fs').promises;
 const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
+const path = require('path');
 
-async function validateConfig(configPath, schemaPath) {
+const SCHEMA_PATH = './schemas';
+const SCHEMA_FILE = 'configuration.schema.json';
+
+async function validateConfig(configPath) {
     const ajv = new Ajv({ allErrors: true });
     addFormats(ajv);
+
+    const schemaPath = path.resolve(__dirname, SCHEMA_PATH, SCHEMA_FILE);
 
     const [configStr, schemaStr] = await Promise.all([
         fs.readFile(configPath, 'utf8'),
@@ -28,8 +34,7 @@ async function validateConfig(configPath, schemaPath) {
     return config;
 }
 
-// Example usage
-const configFile = './filter-configs/config-01.json';
-const schemaFile = './schemas/configuration.schema.json';
 
-validateConfig(configFile, schemaFile).catch(console.error);
+module.exports = {
+    validateConfig,
+};

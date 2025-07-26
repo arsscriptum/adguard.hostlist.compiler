@@ -4,6 +4,8 @@ const fs = require('fs').promises;
 const consola = require('consola');
 const compile = require('./index');
 const packageJson = require('../package.json');
+const configValidator = require('./validate-config.js');
+
 
 // eslint-disable-next-line import/order
 const { argv } = require('yargs')
@@ -66,12 +68,27 @@ consola.info(`Starting ${packageJson.name} v${packageJson.version}`);
 async function readConfig() {
     consola.debug(`Reading configuration from ${argv.config}`);
     await fs.access(argv.config);
-    const configStr = (await fs.readFile(argv.config)).toString();
-    const config = JSON.parse(configStr);
-    // was used to update checksum later (disabled, not used anymore)
-    //config._configPath = argv.config; 
+
+    let configStr;
+    try {
+        configStr = await fs.readFile(argv.config, 'utf8');
+    } catch (e) {
+        consola.error('Failed to read config file:', e.message);
+        process.exit(1);
+    }
+
+    let configObj;
+    try {
+        configObj = JSON.parse(configStr);
+    } catch (e) {
+        consola.error('Invalid JSON in config file:', e.message);
+        process.exit(1);
+    }
+
+    const config = configValidator.validateConfig(configObj);
     return config;
 }
+
 
 /**
  * Creates a configuration object for the specified blocklist source.
@@ -100,6 +117,7 @@ function createConfig() {
     argv.input.forEach((input) => {
         config.sources.push({
             source: input,
+            checksum: "temporary_hash",
             type: inputType,
         });
     });
@@ -123,7 +141,7 @@ async function main() {
         const baseName = parsedPath.name; // e.g., "filter-01"
         const ext = parsedPath.ext;       // e.g., ".txt"
         const dir = parsedPath.dir;       // full path to directory
-
+        
         consola.debug(`Configuration: ${JSON.stringify(config, 0, 4)}`);
 
         const lines = await compile(config);
