@@ -1,4 +1,8 @@
-# Hostlist compiler
+
+<center>
+<img src="img/title.png" alt="banner" />
+</center>
+
 
 This is a simple tool that makes it easier to compile a [hosts blocklist](https://adguard-dns.io/kb/general/dns-filtering-syntax/) compatible with AdGuard Home or any other AdGuard product with **DNS filtering**. Based on [AdGuard HostlistCompiler](https://github.com/AdguardTeam/HostlistCompiler), I have made [multiple additions](https://github.com/arsscriptum/adguard.hostlist.compiler/commits/main/): from **splitting output files to checksum validation before processing and more***...
 
