@@ -2,7 +2,7 @@ const config = require('../src/configuration');
 
 describe('Configuration', () => {
     it('test invalid configuration', () => {
-        const ret = config.validateConfiguration({
+        const ret = config.validateConfigurationSimple({
             name: 'test',
         });
         expect(ret.valid).toBe(false);
@@ -10,7 +10,7 @@ describe('Configuration', () => {
     });
 
     it('test valid configuration', () => {
-        const ret = config.validateConfiguration({
+        const ret = config.validateConfigurationSimple({
             name: 'test',
             sources: [
                 {
@@ -23,7 +23,7 @@ describe('Configuration', () => {
     });
 
     it('test many transformations configuration', () => {
-        const ret = config.validateConfiguration({
+        const ret = config.validateConfigurationSimple({
             name: 'test',
             sources: [
                 {
@@ -52,7 +52,7 @@ describe('Configuration', () => {
     });
 
     it('test invalid transformation', () => {
-        const ret = config.validateConfiguration({
+        const ret = config.validateConfigurationSimple({
             name: 'test',
             sources: [
                 {
