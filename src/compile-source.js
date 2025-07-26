@@ -10,18 +10,20 @@ const { transform } = require('./transformations/transform');
  * @param {Object} config - full config (to persist checksum updates)
  * @returns {Promise<Array<string>>}
  */
-async function compileSource(source, config) {
+async function compileSource(source, config,force) {
     consola.info(`Checking source: ${source.source}`);
 
     const str = await utils.download(source.source);
     const checksum = utils.computeChecksum(str);
     consola.info(`Compiling checksum: ${checksum.toLowerCase()}`);
     consola.info(`Comparing to: ${source.checksum.toLowerCase()}`);
-   
-    if (source.checksum && source.checksum.toLowerCase() === checksum.toLowerCase()) {
-        consola.warn(`CHECKSUM UNCHANGED! Skipping ${source.source}`);
-        return []; // No processing
+    if(!force){
+        if (source.checksum && source.checksum.toLowerCase() === checksum.toLowerCase()) {
+            consola.warn(`CHECKSUM UNCHANGED! Skipping ${source.source}`);
+            return []; // No processing
+        }
     }
+
 
     // Update checksum
     source.checksum = checksum;

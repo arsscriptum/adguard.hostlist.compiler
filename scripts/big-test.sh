@@ -68,7 +68,7 @@ NewMaxSizeValueDetected=$(jq '.maxsize | tonumber' $ConfigFile)
 log_info "New Max Size Value Detected $NewMaxSizeValueDetected"
 
 # Execute the command
-$NODEBIN $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput"
+$NODEBIN $COMPILER_CLIENT -c "$ConfigFile" -o "$FilterOutput" -f
     
 if [ $? -eq 0 ]; then
     log_ok "generated successfully: $FilterOutput"

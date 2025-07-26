@@ -106,7 +106,7 @@ function prepareSourceHeader(source) {
 See the repo README for the details on it.
  * @returns {Promise<Array<string>>} the array of rules.
  */
-async function compile(configuration) {
+async function compile(configuration,force) {
     consola.warn('Starting the compiler');
     //const ret = config.validateConfigurationSimple(configuration);
     /*if (!ret.valid) {
@@ -123,7 +123,7 @@ async function compile(configuration) {
     // eslint-disable-next-line no-restricted-syntax
     for (const source of configuration.sources) {
         // eslint-disable-next-line no-await-in-loop
-        const sourceRules = await compileSource(source,configuration);
+        const sourceRules = await compileSource(source,configuration,force);
         const sourceHeader = prepareSourceHeader(source);
 
         finalList = finalList.concat(sourceHeader);

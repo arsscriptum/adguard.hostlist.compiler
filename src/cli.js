@@ -48,6 +48,11 @@ const { argv } = require('yargs')
         type: 'boolean',
         description: 'Run with verbose logging',
     })
+    .option('force', {
+        alias: 'f',
+        type: 'boolean',
+        description: 'Force rebuild even if checksum same',
+    })
     .demandOption(['o'])
     .version()
     .help('h')
@@ -145,7 +150,7 @@ async function main() {
         
         consola.debug(`Configuration: ${JSON.stringify(config, 0, 4)}`);
 
-        const lines = await compile(config);
+        const lines = await compile(config,argv.force);
 
         consola.info(`Writing output to ${argv.output}`);
         if (Array.isArray(lines) && lines[0]?.content) {

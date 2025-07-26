@@ -1,23 +1,24 @@
 {
-    "name": "Custom Hosts - someonewhocares",
+    "name": "Custom Hosts - The_Quantum_Ad-List",
     "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
     "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
     "license": "GPLv3",
-    "maxsize": "16777216",
+    "maxsize": "17825792",
     "sources": [
         {
-            "name": "hosts rules",
-            "source": "https://someonewhocares.org/hosts/hosts",
+            "name": "The_Quantum_Ad-List.txt rules",
+            "source": "https://gitlab.com/The_Quantum_Alpha/the-quantum-ad-list/-/raw/master/Raw/The_Quantum_Ad-List.txt",
             "type": "hosts",
             "transformations": [
                 "RemoveModifiers",
                 "Validate"
             ],
-            "checksum": "435c0aea6eb57c6cd8a299fbcb007789a73c75a9e191913185678f769ace2e1f"
+            "checksum": "c65adef530718c40114d2c010d09070bfa6740fe46a15510a6b8e4342c33b67f"
         }
     ],
     "transformations": [
         "Deduplicate",
         "Compress"
-    ]
+    ],
+    "_configPath": "/home/gp/dev/adguard.hostlist.compiler/test/test-config-big.json"
 }
