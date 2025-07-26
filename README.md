@@ -112,7 +112,7 @@ hostlist-compiler -c configuration.json -o output.txt
 **All command line options**
 
 ```
-Usage: hostlist-compiler [options]
+Usage: hostlist-compiler [options] / node cli.js [options]
 
 Options:
   --config, -c      Path to the compiler configuration file             [string]
@@ -121,15 +121,19 @@ Options:
   --input-type, -t  Type of the input file (/etc/hosts, adguard)        [string]
   --output, -o      Path to the output file                  [string] [required]
   --verbose, -v     Run with verbose logging                           [boolean]
+  --force, -f       Force rebuild even if checksum same                [boolean]
   --version         Show version number                                [boolean]
   -h, --help        Show help                                          [boolean]
 
 Examples:
-  hostlist-compiler -c config.json -o       compile a blocklist and write the
-  output.txt                                output to output.txt
-  hostlist-compiler -i                      compile a blocklist from the URL and
-  https://example.org/hosts.txt -o          write the output to output.txt
-  output.txt
+
+  ### compile a blocklist and write the output to output.txt, force the rebuild
+  hostlist-compiler -c config.json -o output.txt --force
+
+  ### compile a blocklist from the URL and  write the output to output.txt                
+  node cli.js -i https://example.org/hosts.txt -o output.txt 
+           
+  
 ```
 
 ### <a name="configuration"></a> Configuration
