@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const consola = require('consola');
 const compile = require('./index');
 const packageJson = require('../package.json');
-const configValidator = require('./validate-config.js');
+//const configValidator = require('./validate-config.js');
 
 
 // eslint-disable-next-line import/order
@@ -84,9 +84,10 @@ async function readConfig() {
         consola.error('Invalid JSON in config file:', e.message);
         process.exit(1);
     }
+    configObj._configPath = argv.config; 
 
-    const config = configValidator.validateConfig(configObj);
-    return config;
+    //const config = configValidator.validateConfig(configObj);
+    return configObj;
 }
 
 

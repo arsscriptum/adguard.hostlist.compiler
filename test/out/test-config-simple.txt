@@ -1,0 +1,13 @@
+!
+! Title: Custom Hosts - adaway
+! Description: Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.
+! Homepage: https://github.com/arsscriptum/adguard.hostlist.compiler
+! License: GPLv3
+! Last modified: 2025-07-26T03:54:41.849Z
+!
+! Compiled by @adguard/hostlist-compiler v1.0.29
+!
+!
+! Source name: hosts.txt rules
+! Source: https://adaway.org/hosts.txt
+!

@@ -15,24 +15,27 @@ async function compileSource(source, config) {
 
     const str = await utils.download(source.source);
     const checksum = utils.computeChecksum(str);
-
+    consola.info(`Compiling checksum: ${checksum.toLowerCase()}`);
+    consola.info(`Comparing to: ${source.checksum.toLowerCase()}`);
+   
     if (source.checksum && source.checksum.toLowerCase() === checksum.toLowerCase()) {
-        consola.info(`Skipping ${source.source} (checksum unchanged)`);
+        consola.warn(`CHECKSUM UNCHANGED! Skipping ${source.source}`);
         return []; // No processing
     }
 
     // Update checksum
     source.checksum = checksum;
 
-    // Save updated config if path is tracked
-    //if (config._configPath) {
-    //    try {
-    //        await fs.writeFile(config._configPath, JSON.stringify(config, null, 4));
-    //        consola.success(`Updated checksum in config file: ${config._configPath}`);
-    //    } catch (err) {
-    //        consola.warn(`Could not update config file: ${err.message}`);
-    //    }
-    //}
+    // 
+    consola.info(`saving to : ${config._configPath}`);
+    if (config._configPath)  {
+        try {
+            await fs.writeFile(config._configPath, JSON.stringify(config, null, 4));
+            consola.success(`Updated checksum in config file: ${config._configPath}`);
+        } catch (err) {
+            consola.warn(`Could not update config file: ${err.message}`);
+        }
+    }
 
     // Process the file
     let rules = str.split(/\r?\n/);

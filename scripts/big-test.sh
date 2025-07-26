@@ -47,9 +47,9 @@ pushd $RootPath > /dev/null
 NewMaxSize=2048
 
 
-ConfigFile="$RootPath/test/test-config-simple.json"
+ConfigFile="$RootPath/test/test-config-big.json"
 FilterOutputPath="$RootPath/test/out"
-FilterOutput="$FilterOutputPath/test-config-simple.txt"
+FilterOutput="$FilterOutputPath/test-config-big.txt"
 log_info "   Compiling using log file --> $ConfigFile"
 log_info "   Compiling output to      --> $FilterOutput"
 
@@ -59,12 +59,12 @@ mkdir -p "$FilterOutputPath"
 
 start_time=$(date +%s)
 
-#CurrentMaxSize=$(jq '.maxsize | tonumber' $ConfigFile)
-
+CurrentMaxSize=$(jq '.maxsize | tonumber' $ConfigFile)
+NewMaxSize=17825792
 log_info "Setting new max size to $NewMaxSize, was $CurrentMaxSize"
-#sed -i "s/\"maxsize\": *\"[0-9]\+\"/\"maxsize\": \"$NewMaxSize\"/" "$ConfigFile"
+sed -i "s/\"maxsize\": *\"[0-9]\+\"/\"maxsize\": \"$NewMaxSize\"/" "$ConfigFile"
 
-#NewMaxSizeValueDetected=$(jq '.maxsize | tonumber' $ConfigFile)
+NewMaxSizeValueDetected=$(jq '.maxsize | tonumber' $ConfigFile)
 log_info "New Max Size Value Detected $NewMaxSizeValueDetected"
 
 # Execute the command

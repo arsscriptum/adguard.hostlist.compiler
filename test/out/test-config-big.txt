@@ -1,0 +1,13 @@
+!
+! Title: Custom Hosts - The_Quantum_Ad-List
+! Description: Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.
+! Homepage: https://github.com/arsscriptum/adguard.hostlist.compiler
+! License: GPLv3
+! Last modified: 2025-07-26T03:57:26.379Z
+!
+! Compiled by @adguard/hostlist-compiler v1.0.29
+!
+!
+! Source name: The_Quantum_Ad-List.txt rules
+! Source: https://gitlab.com/The_Quantum_Alpha/the-quantum-ad-list/-/raw/master/Raw/The_Quantum_Ad-List.txt
+!

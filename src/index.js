@@ -107,14 +107,14 @@ See the repo README for the details on it.
  * @returns {Promise<Array<string>>} the array of rules.
  */
 async function compile(configuration) {
-    consola.info('Starting the compiler');
-    const ret = config.validateConfiguration(configuration);
+    consola.warn('Starting the compiler');
+    //const ret = config.validateConfigurationSimple(configuration);
     /*if (!ret.valid) {
         consola.info(ret.errorsText);
         throw new Error('Failed to validate configuration');
     }*/
 
-    consola.info(`Configuration: ${JSON.stringify(configuration, 0, 4)}`);
+    //consola.info(`Configuration: ${JSON.stringify(configuration, 0, 4)}`);
 
     // This will be the final list of rules
     let finalList = [];
@@ -150,6 +150,8 @@ async function compile(configuration) {
 
    if (totalSize <= maxsize) {
        return outputLines;
+   }else{
+       consola.warn(`Max size allowed: ${maxsize} bytes. Actual size: ${totalSize} bytes`);  
    }
 
    // Needs splitting
@@ -158,6 +160,7 @@ async function compile(configuration) {
 
    return allParts.map((part) => {
        const size = Buffer.byteLength(part.lines.join(os.EOL));
+       consola.info(`Max size allowed: ${maxsize} bytes. Part ${part.name} size: ${size} bytes`);  
        const customHeader = [
            '!',
            `! File: ${part.name}`,

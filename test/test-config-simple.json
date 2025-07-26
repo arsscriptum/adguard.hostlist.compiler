@@ -3,7 +3,6 @@
     "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
     "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
     "license": "GPLv3",
-    "maxsize": "2048",
     "sources": [
         {
             "name": "hosts.txt rules",
@@ -19,5 +18,6 @@
     "transformations": [
         "Deduplicate",
         "Compress"
-    ]
+    ],
+    "_configPath": "/home/gp/dev/adguard.hostlist.compiler/test/test-config-simple.json"
 }
