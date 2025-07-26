@@ -1,16 +1,23 @@
 {
-  "name": "Custom Hosts - The_Quantum_Ad-List_porn",
-  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
-  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
-  "license": "GPLv3",
-  "maxsize": "16777216",
-  "sources": [
-    {
-      "name": "The_Quantum_Ad-List_porn.txt rules",
-      "source": "https://gitlab.com/The_Quantum_Alpha/the-quantum-ad-list/-/raw/master/Individual lists/The_Quantum_Ad-List_porn.txt",
-      "type": "hosts",
-      "transformations": ["RemoveModifiers", "Validate"]
-    }
-  ],
-  "transformations": ["Deduplicate", "Compress"]
+    "name": "Custom Hosts - The_Quantum_Ad-List_porn",
+    "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+    "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+    "license": "GPLv3",
+    "maxsize": "16777216",
+    "sources": [
+        {
+            "name": "The_Quantum_Ad-List_porn.txt rules",
+            "source": "https://gitlab.com/The_Quantum_Alpha/the-quantum-ad-list/-/raw/master/Individual lists/The_Quantum_Ad-List_porn.txt",
+            "type": "hosts",
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "54254101fbb12353c44d38688d398f0e76dd206caebd08e5120839a7ef48f0f9"
+        }
+    ],
+    "transformations": [
+        "Deduplicate",
+        "Compress"
+    ]
 }

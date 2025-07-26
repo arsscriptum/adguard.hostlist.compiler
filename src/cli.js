@@ -68,7 +68,8 @@ async function readConfig() {
     await fs.access(argv.config);
     const configStr = (await fs.readFile(argv.config)).toString();
     const config = JSON.parse(configStr);
-    config._configPath = argv.config; // ⬅ used to update checksum later
+    // was used to update checksum later (disabled, not used anymore)
+    //config._configPath = argv.config; 
     return config;
 }
 

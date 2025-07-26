@@ -1,121 +1,174 @@
 {
-  "name": "AdGuard Mobile Ads filter ad servers, third-party trackers",
-  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
-  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
-  "license": "GPLv3",
-  "maxsize": "16777216",
-  "sources": [
-    {
-      "name": "AdGuard Mobile Ads filter ad servers",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "EasyList ad servers",
-      "source": "https://raw.githubusercontent.com/easylist/easylist/master/easylist/easylist_adservers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "AdGuard Tracking Protection filter third-party trackers",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "AdGuard Tracking Protection filter first-party trackers",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers_firstparty.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "AdGuard Tracking Protection filter mobile trackers",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "EasyPrivacy tracking servers",
-      "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_trackingservers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "EasyPrivacy international tracking servers",
-      "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_trackingservers_international.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "EasyPrivacy third-party tracking servers",
-      "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_thirdparty.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "EasyPrivacy third-party international tracking servers",
-      "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_thirdparty_international.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "ABPindo ad servers",
-      "source": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/src/advert/adservers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "hostsVN ad servers",
-      "source": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/filters/adservers.txt",
-      "type": "adblock",
-      "exclusions_sources": [
-        "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
-      ],
-      "transformations": ["RemoveModifiers", "Validate"]
-    },
-    {
-      "name": "Additional rules",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/rules.txt",
-      "transformations": ["Validate"],
-      "type": "adblock"
-    },
-    {
-      "name": "Exception rules",
-      "source": "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt",
-      "transformations": ["Validate"],
-      "type": "adblock"
-    }
-  ],
-  "transformations": ["Deduplicate", "Compress"]
+    "name": "AdGuard Mobile Ads filter ad servers, third-party trackers",
+    "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+    "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+    "license": "GPLv3",
+    "maxsize": "16777216",
+    "sources": [
+        {
+            "name": "AdGuard Mobile Ads filter ad servers",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/MobileFilter/sections/adservers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "c97fc9866eb7836adc6f5cd02a4a814ef91a70d8b0087d0ea9af332657fda05d"
+        },
+        {
+            "name": "EasyList ad servers",
+            "source": "https://raw.githubusercontent.com/easylist/easylist/master/easylist/easylist_adservers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "31246f657f89a3271b284027db0f6dd478c190043eac6fa1b02bf9580abeda61"
+        },
+        {
+            "name": "AdGuard Tracking Protection filter third-party trackers",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "788de7949f7bc04868b2fee7b64d1b250361af49f1373d9e13b240898218064b"
+        },
+        {
+            "name": "AdGuard Tracking Protection filter first-party trackers",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/tracking_servers_firstparty.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "3c3c94c6625a7e22c72d0ae96ee28c8602ecd02e8ae2950bae67236e45d223da"
+        },
+        {
+            "name": "AdGuard Tracking Protection filter mobile trackers",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/master/SpywareFilter/sections/mobile.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "67086c878dce2ce0bb70af826495924502c30e391627bdc05b5f0c344227a88e"
+        },
+        {
+            "name": "EasyPrivacy tracking servers",
+            "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_trackingservers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "4103b9dcaad1c37b6fe666ab2f7a1589f006943774bb6cb79d3a34f0e71e532b"
+        },
+        {
+            "name": "EasyPrivacy international tracking servers",
+            "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_trackingservers_international.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "3b1da92402f608336c0aac87b95edc27e49b7bbf000f12c452e02d215022ced8"
+        },
+        {
+            "name": "EasyPrivacy third-party tracking servers",
+            "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_thirdparty.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "787eaef6383fd6e3b8ffe4be644a3dc1bf2bb1a000e8707d4892a59a6e0cd173"
+        },
+        {
+            "name": "EasyPrivacy third-party international tracking servers",
+            "source": "https://raw.githubusercontent.com/easylist/easylist/master/easyprivacy/easyprivacy_thirdparty_international.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "f7d56a33a7ccad50cd87d9a4b1141fd6b6205e07187106717addfac1fe8ea7f5"
+        },
+        {
+            "name": "ABPindo ad servers",
+            "source": "https://raw.githubusercontent.com/ABPindo/indonesianadblockrules/master/src/advert/adservers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "aa9867b614e17fe642d7fe635e8c31c72910eb1dde785808d52d73135cf14ea2"
+        },
+        {
+            "name": "hostsVN ad servers",
+            "source": "https://raw.githubusercontent.com/bigdargon/hostsVN/master/filters/adservers.txt",
+            "type": "adblock",
+            "exclusions_sources": [
+                "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exclusions.txt"
+            ],
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "aed9c7b5813fed157112aeb24401602563e2cadaefdbc4e688f3fec2936aed8e"
+        },
+        {
+            "name": "Additional rules",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/rules.txt",
+            "transformations": [
+                "Validate"
+            ],
+            "type": "adblock",
+            "checksum": "74e98495b351b3c42156eddb1d3b2b9a51da6cf452b9711aa0c1662311b5a63a"
+        },
+        {
+            "name": "Exception rules",
+            "source": "https://raw.githubusercontent.com/AdguardTeam/AdGuardSDNSFilter/master/Filters/exceptions.txt",
+            "transformations": [
+                "Validate"
+            ],
+            "type": "adblock",
+            "checksum": "2cfd9481d3232067c747d06c000f419953a09305a08dd463c262abc4019e2f7b"
+        }
+    ],
+    "transformations": [
+        "Deduplicate",
+        "Compress"
+    ]
 }

@@ -1,16 +1,23 @@
 {
-  "name": "Custom Hosts - hosts.anudeep.me",
-  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
-  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
-  "license": "GPLv3",
-  "maxsize": "16777216",
-  "sources": [
-    {
-      "name": "adservers.txt rules",
-      "source": "https://hosts.anudeep.me/mirror/adservers.txt",
-      "type": "hosts",
-      "transformations": ["RemoveModifiers", "Validate"]
-    }
-  ],
-  "transformations": ["Deduplicate", "Compress"]
+    "name": "Custom Hosts - hosts.anudeep.me",
+    "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+    "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+    "license": "GPLv3",
+    "maxsize": "16777216",
+    "sources": [
+        {
+            "name": "adservers.txt rules",
+            "source": "https://hosts.anudeep.me/mirror/adservers.txt",
+            "type": "hosts",
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "e3bda2b86809c674c43ace495b526bfd766d2d64038520f7c6557de7405a46b6"
+        }
+    ],
+    "transformations": [
+        "Deduplicate",
+        "Compress"
+    ]
 }

@@ -25,14 +25,14 @@ async function compileSource(source, config) {
     source.checksum = checksum;
 
     // Save updated config if path is tracked
-    if (config._configPath) {
-        try {
-            await fs.writeFile(config._configPath, JSON.stringify(config, null, 4));
-            consola.success(`Updated checksum in config file: ${config._configPath}`);
-        } catch (err) {
-            consola.warn(`Could not update config file: ${err.message}`);
-        }
-    }
+    //if (config._configPath) {
+    //    try {
+    //        await fs.writeFile(config._configPath, JSON.stringify(config, null, 4));
+    //        consola.success(`Updated checksum in config file: ${config._configPath}`);
+    //    } catch (err) {
+    //        consola.warn(`Could not update config file: ${err.message}`);
+    //    }
+    //}
 
     // Process the file
     let rules = str.split(/\r?\n/);

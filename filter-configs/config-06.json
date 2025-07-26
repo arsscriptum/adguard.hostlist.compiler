@@ -1,16 +1,23 @@
 {
-  "name": "Custom Hosts - someonewhocares",
-  "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
-  "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
-  "license": "GPLv3",
-  "maxsize": "16777216",
-  "sources": [
-    {
-      "name": "hosts rules",
-      "source": "https://someonewhocares.org/hosts/hosts",
-      "type": "hosts",
-      "transformations": ["RemoveModifiers", "Validate"]
-    }
-  ],
-  "transformations": ["Deduplicate", "Compress"]
+    "name": "Custom Hosts - someonewhocares",
+    "description": "Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.",
+    "homepage": "https://github.com/arsscriptum/adguard.hostlist.compiler",
+    "license": "GPLv3",
+    "maxsize": "16777216",
+    "sources": [
+        {
+            "name": "hosts rules",
+            "source": "https://someonewhocares.org/hosts/hosts",
+            "type": "hosts",
+            "transformations": [
+                "RemoveModifiers",
+                "Validate"
+            ],
+            "checksum": "435c0aea6eb57c6cd8a299fbcb007789a73c75a9e191913185678f769ace2e1f"
+        }
+    ],
+    "transformations": [
+        "Deduplicate",
+        "Compress"
+    ]
 }

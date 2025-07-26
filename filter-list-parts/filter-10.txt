@@ -3,7 +3,7 @@
 ! Description: Filter composed from several other filters and simplified specifically to be better compatible with DNS-level ad blocking.
 ! Homepage: https://github.com/arsscriptum/adguard.hostlist.compiler
 ! License: GPLv3
-! Last modified: 2025-07-25T20:53:06.680Z
+! Last modified: 2025-07-25T22:50:37.374Z
 !
 ! Compiled by @adguard/hostlist-compiler v1.0.29
 !
@@ -2056,6 +2056,7 @@
 ||ad-vice.biz^
 ||ad-vortex.com^
 ||ad-wheel.com^
+||ad.cpcstar.com^
 ||ad.gt^
 ||ad.guru^
 ||ad.linksynergy.com^
@@ -3301,6 +3302,7 @@
 ||ancestortrotsoothe.com^
 ||anchoredcollar.pro^
 ||anchornails.com^
+||anchorytormen.cyou^
 ||ancient-pipe.com^
 ||anctrixujo.com^
 ||ancznewozw.com^
@@ -4731,6 +4733,7 @@
 ||berush.com^
 ||besandileom.com^
 ||besetglaucin.shop^
+||besidesphemie.world^
 ||besmearcomb.top^
 ||besmeargleor.com^
 ||besoniopolish.top^
@@ -6835,6 +6838,7 @@
 ||clipperroutesevere.com^
 ||cliquesteria.net^
 ||clitmwviwbokk.space^
+||clivmongoe.qpon^
 ||clivporkies.click^
 ||clixcrafts.com^
 ||clixsense.com^
@@ -7131,6 +7135,7 @@
 ||conduit-banners.com^
 ||conduit-services.com^
 ||conenectedithcons.org^
+||conergrivet.shop^
 ||conestreshow.com^
 ||confidentialitydefensetshirt.com^
 ||confinekibbler.com^
@@ -7725,6 +7730,7 @@
 ||cushoussie.net^
 ||cuspuledale.top^
 ||custardextreme.qpon^
+||custcingle.cyou^
 ||custodycraveretard.com^
 ||customads.co^
 ||customernormallyseventh.com^
@@ -8392,6 +8398,7 @@
 ||dheqzygafg.com^
 ||dhertouchingthe.org^
 ||dhnxalgfditdo.online^
+||dhojmirptkwfy.website^
 ||dhoorascolder.shop^
 ||dhootiepawed.com^
 ||dhotissyssel.top^
@@ -8850,6 +8857,7 @@
 ||dovecyton.com^
 ||dovictinian.com^
 ||dovoeqhym.xyz^
+||doweredthrifty.cfd^
 ||dowerlesssightseehow.com^
 ||dowerszontian.cfd^
 ||dowerycleared.com^
@@ -8963,6 +8971,7 @@
 ||dropvieflanged.cfd^
 ||drossedinspoke.rest^
 ||drossesareca.com^
+||droukscixiid.help^
 ||drouthramed.top^
 ||drovedkooky.com^
 ||drowndchow.top^
@@ -12044,6 +12053,7 @@
 ||gorsesgauby.top^
 ||gorsiernoser.world^
 ||gorsyrebawl.qpon^
+||gorxfecl.com^
 ||goschenelect.com^
 ||goshawkwaily.cfd^
 ||goshbiopsy.com^
@@ -12069,6 +12079,7 @@
 ||gownlile.click^
 ||gowpengumboil.cyou^
 ||goxithosho.com^
+||goxpayjfnv.xyz^
 ||gpcrn.com^
 ||gpdaibmsc.com^
 ||gpfhlajkvdhvv.space^
@@ -13311,11 +13322,13 @@
 ||htkcm.com^
 ||htkialflazmtc.site^
 ||htl.bid^
+||htlbbzjjgmgye.space^
 ||htlbid.com^
 ||htliaproject.com^
 ||htmonster.com^
 ||htnejxlhoskug.love^
 ||htnswmuugnjpr.club^
+||htnykujbhbmeu.site^
 ||htocmofkyqfi.com^
 ||htoptracker11072023.com^
 ||htplaodmknel.one^
@@ -14214,6 +14227,7 @@
 ||itlgwhjbpojiv.store^
 ||itlitleoan.com^
 ||itmamoswineer.com^
+||itmofoggish.cfd^
 ||itmqcxwdiascjat.xyz^
 ||itnhosioqb.com^
 ||itnuzleafan.com^
@@ -17009,6 +17023,7 @@
 ||mattressstumpcomplement.com^
 ||maulgie.top^
 ||maulupoa.com^
+||maupsupishap.com^
 ||mausolemiskal.top^
 ||mauweebailuchi.com^
 ||mavamuwwnkksn.store^
@@ -18117,6 +18132,7 @@
 ||naehqgcanrh.xyz^
 ||naewynn.com^
 ||nafrewayle.shop^
+||naggingarverni.cfd^
 ||naggingjellretreat.com^
 ||nagnailmobcap.shop^
 ||nagraipsoagnoo.com^
@@ -20611,6 +20627,7 @@
 ||phockukoagu.net^
 ||phoebedished.top^
 ||phokukse.com^
+||pholcidannet.shop^
 ||pholcidboran.rest^
 ||phomoach.net^
 ||phoneboothsabledomesticated.com^
@@ -20675,6 +20692,7 @@
 ||pierisrapgae.com^
 ||pierlinks.com^
 ||piestprevot.com^
+||pietosounowed.help^
 ||pifpanobkox.com^
 ||piggiepepo.xyz^
 ||pignuwoa.com^
@@ -21066,6 +21084,7 @@
 ||popupchat-live.com^
 ||popupgoldblocker.net^
 ||popupsblocker.org^
+||popviking.com^
 ||popxperts.com^
 ||popxyz.com^
 ||porailbond.com^
@@ -21293,6 +21312,7 @@
 ||prime-ever.com^
 ||prime-vpnet.com^
 ||primedirect.net^
+||primeincident.pro^
 ||primeleech.com^
 ||primevalstork.com^
 ||primevideospot.com^
@@ -25575,6 +25595,7 @@
 ||subdatejutties.com^
 ||subdued-breakfast.pro^
 ||subduedfilthloot.com^
+||subguromere.click^
 ||subjectedburglar.com^
 ||subjectsfaintly.com^
 ||subjectslisted.com^
@@ -27747,6 +27768,7 @@
 ||uqohomcgxhtjr.space^
 ||uqojzdtzbonpz.online^
 ||uqqmj868.xyz^
+||uqrchidhtpvmc.space^
 ||uqskepsduimmm.online^
 ||uquhuahi.com^
 ||uqzoyikxsfhdr.space^
@@ -28185,6 +28207,7 @@
 ||vgfasfrttxhrc.site^
 ||vgfhycwkvh.com^
 ||vgjutfaeidkpy.online^
+||vgtevnzhlujfv.website^
 ||vgvaggkdte.xyz^
 ||vgzglvykuyclh.store^
 ||vhacakzwegu.com^
@@ -28408,6 +28431,7 @@
 ||vmring.cc^
 ||vmuid.com^
 ||vmwnwgoqkmgqq.top^
+||vmwnwgoqkmqbz.top^
 ||vmzjmjzgqzyqj.top^
 ||vmznizmchwaxq.space^
 ||vnaymmzomvqqw.top^
@@ -29849,6 +29873,7 @@
 ||xjbnyqrmxvpas.store^
 ||xjfqqyrcz.com^
 ||xjixxfwwheoch.online^
+||xjjjeoythaboi.website^
 ||xjmhwpghqxsis.online^
 ||xjrwxfdphc.com^
 ||xjsx.lol^
@@ -29858,6 +29883,7 @@
 ||xkqjpdrotufpp.website^
 ||xkspgkdejobec.site^
 ||xkxynfnlutmwi.site^
+||xlbcuhetdk.com^
 ||xlebyndzkwxkn.space^
 ||xliirdr.com^
 ||xlirdr.com^
@@ -30539,6 +30565,7 @@
 ||zestpocosin.com^
 ||zetadeo.com^
 ||zeteticthiever.qpon^
+||zeusadx.com^
 ||zevwkbzlbkmez.top^
 ||zevwkbzlbkolo.top^
 ||zevwkbzlbkoyb.top^
@@ -30795,6 +30822,7 @@
 ||zvwhrc.com^
 ||zvzmzrawlvrww.top^
 ||zvzmzrawlvryj.top^
+||zvzmzrawlvwyb.top^
 ||zwaar.net^
 ||zwk7ybbg.net^
 ||zwnoeqzsuz.com^
